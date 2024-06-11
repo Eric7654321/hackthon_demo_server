@@ -21,6 +21,11 @@ public class UtilsServiceImpl implements UtilsService {
         // 將時間轉換為字符串
         String timeString = now.format(formatter);
 
+        // 檢查timeString的長度
+        if (timeString.length() < 25) {
+            return timeString;  // 如果長度不足，直接返回timeString
+        }
+
         // 將字符串轉換為所需的格式
         String deviceName = timeString.substring(0, 5) + "-" +
                 timeString.substring(5, 10) + "-" +

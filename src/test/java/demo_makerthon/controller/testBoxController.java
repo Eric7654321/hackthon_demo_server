@@ -21,4 +21,8 @@ public class testBoxController {
     public void SetBoxTime(){
         boxService.setUpdateTime();
     }
+    @Test
+    public void testGetDevice(){
+        System.out.println(boxController.getBoxInfo());
+    }
 }

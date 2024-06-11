@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class BoxServiceImpl implements BoxService {
@@ -22,9 +23,9 @@ public class BoxServiceImpl implements BoxService {
     }
 
     @Override
-    public Device getDevice() {
-        Device device = boxMapper.getDevice();
-        return device;
+    public List<Device> getDevice() {
+        List<Device> devices = boxMapper.getDevice();
+        return devices;
     }
 
 }

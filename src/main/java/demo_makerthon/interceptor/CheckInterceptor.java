@@ -13,6 +13,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Component
 public class CheckInterceptor implements HandlerInterceptor {
@@ -23,11 +25,11 @@ public class CheckInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-
+        System.out.println("攔截器已啟用");
         String url = req.getRequestURI().toString();
         log.info("請求的url:{}",url);
 
-        if(url.contains("search") || url.contains("download")){
+        if(false){
             log.info("前端操作, 放行");
             return true;
         }else{
@@ -36,7 +38,7 @@ public class CheckInterceptor implements HandlerInterceptor {
             if(utilsMapper.checkIp(ipAddress) == null){
                 utilsMapper.setDevice(utilsService.getHashName(), ipAddress);
             }else{
-                utilsMapper.setDeviceTime(ipAddress);
+                utilsMapper.setDeviceTime(ipAddress, LocalDateTime.now());
             }
             return true;
         }
@@ -54,6 +56,6 @@ public class CheckInterceptor implements HandlerInterceptor {
         System.out.println("afterCompletion!");
 
         String ipAddress = request.getRemoteAddr();
-        utilsMapper.setDeviceTime(ipAddress);
+        utilsMapper.setDeviceTime(ipAddress, LocalDateTime.now());
     }
 }

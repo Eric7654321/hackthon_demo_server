@@ -2,6 +2,7 @@ package demo_makerthon.service.impl;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import demo_makerthon.mapper.UtilsMapper;
 import demo_makerthon.pojo.MiniReport;
 import demo_makerthon.pojo.earthquakeReport.Earthquake;
 import demo_makerthon.pojo.earthquakeReport.EqStation;
@@ -9,6 +10,7 @@ import demo_makerthon.pojo.earthquakeReport.Report;
 import demo_makerthon.pojo.earthquakeReport.ShakingArea;
 import demo_makerthon.service.EarthquackService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -22,6 +24,9 @@ import java.util.List;
 @Slf4j
 @Service
 public class EarthquackServiceImpl implements EarthquackService {
+    @Autowired
+    UtilsMapper utilsMapper;
+
     @Override
     public List<MiniReport> quakeSearch() {
         WebClient webClient = WebClient.builder()
@@ -46,7 +51,7 @@ public class EarthquackServiceImpl implements EarthquackService {
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd HH:mm:ss")
-                .create();;
+                .create();
         Report report = gson.fromJson(quackData, Report.class);
         System.out.println(report);
 

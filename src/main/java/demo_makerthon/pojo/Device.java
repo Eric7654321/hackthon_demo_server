@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Device {
-    String name;
-    LocalDateTime createTime;
-    LocalDateTime updateTime;
+    String deviceName;
+    LocalDateTime LastUpdated;
+    LocalDateTime ActivationDate;
     Integer id;
     String ipAddress;
 }

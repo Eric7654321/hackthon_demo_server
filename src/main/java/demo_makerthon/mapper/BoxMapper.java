@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Mapper
 public interface BoxMapper {
@@ -14,6 +15,6 @@ public interface BoxMapper {
     void setDeviceUpdateTime(LocalDateTime localDateTime);
 
     //一次取全部
-    @Select("Select devicename, lastupdated, activationdate, id, ipAddress from makentu2024.devices")
-    Device getDevice();
+    @Select("Select * from makentu2024.devices")
+    List<Device> getDevice();
 }

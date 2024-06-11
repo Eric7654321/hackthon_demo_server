@@ -18,15 +18,20 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     @Transactional
-    public Result saveImage(String base64Image) {
-        imageMapper.insert(base64Image, LocalDateTime.now());
+    public Result saveImage(String base64Image, Integer relateId) {
+        imageMapper.insert(base64Image, relateId, LocalDateTime.now());
         return Result.success();
     }
 
     @Override
     @Transactional
-    public String getImage() {
+    public String getImage(Integer id) {
 
-        return imageMapper.select();
+        return imageMapper.select(id);
+    }
+
+    @Override
+    public String getImageByPage(Integer id, Integer page) {
+        return imageMapper.selectByPage(id, page);
     }
 }

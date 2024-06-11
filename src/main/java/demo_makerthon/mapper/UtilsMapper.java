@@ -15,7 +15,7 @@ public interface UtilsMapper {
     @Insert("INSERT INTO makentu2024.devices (IPAddress, DeviceName, LastUpdated, ActivationDate) VALUES (#{ipAddress},#{name},now(),now())")
     void setDevice(String name, String ipAddress);
 
-    @Update("UPDATE makentu2024.devices SET LastUpdated = NOW() WHERE IPAddress = #{ipAddress}")
-    void setDeviceTime(String ipAddress);
+    @Update("UPDATE makentu2024.devices SET LastUpdated = #{localDateTime} WHERE IPAddress = #{ipAddress}")
+    void setDeviceTime(String ipAddress, LocalDateTime localDateTime);
 
 }
